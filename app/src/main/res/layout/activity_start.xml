@@ -5,13 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    tools:context=".StartActivity"
+    android:background="@color/sky_blue">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="다이어트\n다이어리"
         android:textSize="50sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/riasans_extrabold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Touch"
         android:textSize="30sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/kopubworld_dotum_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
