@@ -6,14 +6,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DiaryFragment">
 
+    <ImageView
+        android:id="@+id/diary_main_iv"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_diary"
+        app:tint="@color/dark_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"/>
     <TextView
+        android:id="@+id/diary_main_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="다이어리"
+        android:textSize="30sp"
+        android:textColor="@color/dark_grey"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/diary_main_iv"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"/>
+
+    <CalendarView
+        android:id="@+id/diary_cv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diary_main_iv"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Diary Fragment"
-        android:textSize="30sp"/>
+        android:background="@drawable/skyblue_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
