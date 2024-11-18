@@ -5,7 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Dada" parent="Base.Theme.Dada" />
+    <style name="Theme.Dada" parent="Base.Theme.Dada">
+        <item name="android:statusBarColor">@color/sky_blue</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
 
     <style name="CalenderViewCustom" parent="Theme.AppCompat">
         <item name="colorAccent">@color/selected_blue</item>
