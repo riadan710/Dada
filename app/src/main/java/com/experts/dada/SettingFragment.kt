@@ -24,6 +24,27 @@ class SettingFragment : Fragment() {
             requireActivity().finish()
         }
 
+        binding.setting1Cl.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, SettingProfileFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.setting2Cl.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, SettingStampFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.setting3Cl.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_frm, SettingQuestionFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         return binding.root
     }
 }
