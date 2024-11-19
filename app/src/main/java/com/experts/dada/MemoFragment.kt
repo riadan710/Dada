@@ -28,6 +28,15 @@ class MemoFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        binding.memoNotStarIv.setOnClickListener {
+            binding.memoNotStarIv.visibility = View.GONE
+            binding.memoStarIv.visibility = View.VISIBLE
+        }
+        binding.memoStarIv.setOnClickListener {
+            binding.memoNotStarIv.visibility = View.VISIBLE
+            binding.memoStarIv.visibility = View.GONE
+        }
+
         return binding.root
     }
 }
