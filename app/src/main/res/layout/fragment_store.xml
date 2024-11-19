@@ -29,4 +29,115 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="10dp"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/store_point_cl"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/store_main_iv"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/skyblue_box">
+
+        <TextView
+            android:id="@+id/store_point_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 포인트"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/kopubworld_dotum_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/store_mypoint_tv"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/store_mypoint_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9236"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:fontFamily="@font/riasans_extrabold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/store_point_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <ScrollView
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/store_point_cl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
