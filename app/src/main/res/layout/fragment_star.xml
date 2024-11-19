@@ -10,7 +10,7 @@
         android:id="@+id/star_main_iv"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/ic_fill_star"
+        android:src="@drawable/ic_star"
         app:tint="@color/dark_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
