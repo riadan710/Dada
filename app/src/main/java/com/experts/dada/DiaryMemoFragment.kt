@@ -40,4 +40,9 @@ class DiaryMemoFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun initViewPager() {
+        val viewPagerAdapter = DiaryMemoViewPagerAdapter(requireActivity())
+        binding.memoVp.adapter = viewPagerAdapter
+    }
 }
