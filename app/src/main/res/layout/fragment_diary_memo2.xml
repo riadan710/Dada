@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DiaryMemo2Fragment">
+
+    <TextView
+        android:id="@+id/memo2_weight1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘 몸무게 : "
+        android:fontFamily="@font/font_kopupworld_medium"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/memo2_weight2_et"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_kopupworld_medium"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/memo2_weight1_tv"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/memo2_weight3_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kg"
+        android:fontFamily="@font/font_kopupworld_medium"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/memo2_weight2_et"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/memo2_content_et"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/memo2_weight2_et"
+        app:layout_constraintBottom_toTopOf="@id/memo2_stamp_hsv"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <HorizontalScrollView
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:id="@+id/memo2_stamp_hsv"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+            <ImageView
+                android:src="@drawable/stamp_example"
+                android:layout_width="70dp"
+                android:layout_height="70dp"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ class DiaryMemoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDiaryMemoBinding.inflate(inflater, container, false)
+        initViewPager()
 
         val year = arguments?.getInt("year")
         val month = arguments?.getInt("month")?.let { it + 1 }
