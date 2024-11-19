@@ -1,13 +1,10 @@
 package com.experts.dada
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.Toast
 import com.experts.dada.databinding.FragmentDiaryBinding
 
 class DiaryFragment : Fragment() {
@@ -20,22 +17,31 @@ class DiaryFragment : Fragment() {
     ): View? {
         binding = FragmentDiaryBinding.inflate(inflater, container, false)
 
-        binding.diaryCv.setOnDateChangeListener(object : CalendarView.OnDateChangeListener {
-            override fun onSelectedDayChange(
-                view: CalendarView,
-                year: Int,
-                month: Int,
-                dayOfMonth: Int
-            ) {
-                Toast.makeText(activity, "$year. ${month + 1}. $dayOfMonth", Toast.LENGTH_SHORT).show()
+        // 같은 날짜 두 번 클릭 시 해당 날짜 다이어리 작성으로 이동
+        var preSelectedDate: Triple<Int, Int, Int>? = null
+        binding.diaryCv.setOnDateChangeListener {_, year, month, dayOfMonth ->
+            val selectedDate = Triple(year, month, dayOfMonth)
 
-                val intent = Intent(activity, MemoActivity::class.java)
-                intent.putExtra("year", year)
-                intent.putExtra("month", month)
-                intent.putExtra("dayOfMonth", dayOfMonth)
-                startActivity(intent)
+            if (preSelectedDate == selectedDate) {
+                val bundle = Bundle().apply {
+                    putInt("year", year)
+                    putInt("month", month)
+                    putInt("dayOfMonth", dayOfMonth)
+                }
+
+                val fragmentMemo = MemoFragment().apply {
+                    arguments = bundle
+                }
+
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_frm, fragmentMemo)
+                    .addToBackStack(null)
+                    .commit()
             }
-        })
+            else {
+                preSelectedDate = selectedDate
+            }
+        }
 
         return binding.root
     }
