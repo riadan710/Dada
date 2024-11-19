@@ -29,7 +29,7 @@ class DiaryFragment : Fragment() {
                     putInt("dayOfMonth", dayOfMonth)
                 }
 
-                val fragmentMemo = MemoFragment().apply {
+                val fragmentMemo = DiaryMemoFragment().apply {
                     arguments = bundle
                 }
 

@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.experts.dada.databinding.FragmentMemoBinding
+import com.experts.dada.databinding.FragmentDiaryMemoBinding
 
-class MemoFragment : Fragment() {
+class DiaryMemoFragment : Fragment() {
 
-    lateinit var binding: FragmentMemoBinding
+    lateinit var binding: FragmentDiaryMemoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMemoBinding.inflate(inflater, container, false)
+        binding = FragmentDiaryMemoBinding.inflate(inflater, container, false)
 
         val year = arguments?.getInt("year")
         val month = arguments?.getInt("month")?.let { it + 1 }
