@@ -20,14 +20,16 @@
         android:id="@+id/main_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        style="@style/BottomNavTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom_nav"
         app:labelVisibilityMode="labeled"
         android:background="@color/main_blue"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
-        app:itemIconSize="40dp"/>
+        app:itemTextColor="@drawable/bottom_nav_selector"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:itemIconSize="40dp"
+        app:itemRippleColor="@color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

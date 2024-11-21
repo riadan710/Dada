@@ -23,4 +23,10 @@
     <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/white</item>
     </style>
+    
+    <style name="BottomNavTheme" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:itemBackground">@color/transparent</item>
+        <item name="android:colorControlHighlight">@color/transparent</item>
+    </style>
+
 </resources>
