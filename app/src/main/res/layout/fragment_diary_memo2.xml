@@ -6,38 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DiaryMemo2Fragment">
 
-    <TextView
-        android:id="@+id/memo2_weight1_tv"
+    <LinearLayout
+        android:id="@+id/memo2_weight_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="오늘 몸무게 : "
-        android:fontFamily="@font/font_kopupworld_medium"
-        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"/>
-    <EditText
-        android:id="@+id/memo2_weight2_et"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_kopupworld_medium"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/memo2_weight1_tv"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"/>
-    <TextView
-        android:id="@+id/memo2_weight3_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="kg"
-        android:fontFamily="@font/font_kopupworld_medium"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/memo2_weight2_et"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginStart="15dp">
+
+        <TextView
+            android:id="@+id/memo2_weight1_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 몸무게 : "
+            android:fontFamily="@font/font_kopupworld_medium"
+            android:textSize="15sp"/>
+        <EditText
+            android:id="@+id/memo2_weight2_et"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_kopupworld_bold"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/memo2_weight3_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:fontFamily="@font/font_kopupworld_medium"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/memo2_content_et"
@@ -46,10 +48,14 @@
         android:background="@drawable/square_box"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/memo2_weight2_et"
+        app:layout_constraintTop_toBottomOf="@id/memo2_weight_ll"
         app:layout_constraintBottom_toTopOf="@id/memo2_stamp_hsv"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/font_kopupworld_medium"
+        android:textSize="12sp"
+        android:padding="10dp"
+        android:gravity="start"/>
 
     <HorizontalScrollView
         android:fillViewport="true"
