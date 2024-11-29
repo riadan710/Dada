@@ -34,7 +34,10 @@ class StoreAdapter(private val context : Context) : BaseAdapter() {
         R.drawable.stamp21,
         R.drawable.stamp22,
         R.drawable.stamp23,
-        R.drawable.stamp24
+        R.drawable.stamp24,
+        R.drawable.stamp25,
+        R.drawable.stamp26,
+        R.drawable.stamp27
     )
 
     private val selectedItems = mutableListOf<Int>()
