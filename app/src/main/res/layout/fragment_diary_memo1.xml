@@ -7,6 +7,7 @@
     tools:context=".DiaryMemo1Fragment">
 
     <TextView
+        android:id="@+id/memo1_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="눈바디 사진 추가하기"
@@ -27,5 +28,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:tint="@color/dark_grey" />
+
+    <ImageView
+        android:id="@+id/memo1_eyebody_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/eyebody_example"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

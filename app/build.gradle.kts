@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.glide)  // 이미지 글라이드 라이브러리
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
