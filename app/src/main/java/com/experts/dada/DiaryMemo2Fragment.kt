@@ -19,6 +19,9 @@ class DiaryMemo2Fragment : Fragment() {
     ): View? {
         binding = FragmentDiaryMemo2Binding.inflate(inflater, container,false)
 
+        // 다이어리 작성 화면 새로 킬 때마다 선택된 값 초기화
+        AppData.diarySelectedItem = 0
+
         // 이미지 배열을 생성합니다.
         val imageResIds = (1..27).map { resources.getIdentifier("stamp$it", "drawable", context?.packageName) }
 
@@ -43,6 +46,9 @@ class DiaryMemo2Fragment : Fragment() {
                 // 새로 클릭된 이미지의 ID를 저장하고, 배경을 회색으로 설정
                 selectedItemId = linearLayout.indexOfChild(imageView) + 1
                 imageView.setBackgroundColor(android.graphics.Color.LTGRAY) // 배경을 회색으로 설정
+
+                // 선택된 스탬프 id 저장
+                AppData.diarySelectedItem = selectedItemId?:0
             }
 
             linearLayout.addView(imageView)

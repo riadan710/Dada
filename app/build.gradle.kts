@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -41,6 +42,11 @@ android {
 dependencies {
     implementation(libs.glide)  // 이미지 글라이드 라이브러리
     implementation(libs.androidx.recyclerview)  // 리사이클러뷰 라이브러리
+
+    // Room DB
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
