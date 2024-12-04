@@ -35,4 +35,8 @@ interface DiaryDao {
     @Query("SELECT * FROM diarys WHERE isStar = 1 ORDER BY date DESC")
     fun getStarDiary(): List<Diary>
 
+    // 특정 월의 다이어리 조회
+    @Query("SELECT * FROM diarys WHERE substr(date, 1, 7) = :month")
+    fun getDiaryByMonth(month: String): Flow<List<Diary>>  // 예: "2024-12" 형식
+
 }
