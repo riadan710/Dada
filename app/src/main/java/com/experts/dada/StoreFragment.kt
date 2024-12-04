@@ -39,6 +39,11 @@ class StoreFragment : Fragment() {
             val totalCount = selectedItems.size
             val totalCost = totalCount * 200 // 선택된 이미지 하나당 200 포인트
 
+            if(totalCount == 0) {
+                Toast.makeText(requireContext(), "구매할 상품을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (points >= totalCost) {
                 points -= totalCost
                 handlePurchase(selectedItems)
