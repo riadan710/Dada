@@ -1,5 +1,6 @@
 package com.experts.dada
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.experts.dada.databinding.FragmentDiaryMemoBinding
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +54,12 @@ class DiaryMemoFragment : Fragment() {
             saveDiary(year, month, dayOfMonth)
         }
 
+        // 다이어리 삭제하기
+        binding.memoDeleteTv.setOnClickListener {
+            // 삭제 확인 다이얼로그
+            showDeleteConfirmationDialog(year, month, dayOfMonth)
+        }
+
         return binding.root
     }
 
@@ -78,6 +86,7 @@ class DiaryMemoFragment : Fragment() {
                         binding.memoStarIv.visibility = View.GONE
                         binding.memoNotStarIv.visibility = View.VISIBLE
                     }
+                    binding.memoDeleteTv.visibility = View.VISIBLE
                     // bodyImg 처리 (필요 시 추가 구현)
                 }
             } else {
@@ -85,6 +94,7 @@ class DiaryMemoFragment : Fragment() {
                     AppData.diarySelectedItem = 0
                     AppData.diaryContent = ""
                     AppData.diaryWeight = ""
+                    binding.memoDeleteTv.visibility = View.GONE
                 }
             }
         }
@@ -145,6 +155,51 @@ class DiaryMemoFragment : Fragment() {
                 launch(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "다이어리가 저장되었습니다.", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.popBackStack()
+                }
+            }
+        }
+    }
+
+    private fun showDeleteConfirmationDialog(year: Int, month: Int, dayOfMonth: Int) {
+        // 다이얼로그 생성
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("삭제 확인")
+            .setMessage("정말로 다이어리를 삭제하시겠습니까?")
+            .setPositiveButton("삭제") { _, _ ->
+                // 사용자가 '삭제'를 클릭했을 때
+                deleteDiary(year, month, dayOfMonth)
+            }
+            .setNegativeButton("취소") { dialog, _ ->
+                // 사용자가 '취소'를 클릭했을 때
+                dialog.dismiss()  // 다이얼로그 닫기
+            }
+            .create()
+
+        // 다이얼로그 텍스트 색 main_blue로 변경
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00C1D3")) // main_blue 색으로 설정
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY) // grey 색으로 설정
+        }
+
+        // 다이얼로그 보여주기
+        dialog.show()
+    }
+
+    fun deleteDiary(year : Int, month : Int, dayOfMonth : Int) {
+        val date = String.format("%04d-%02d-%02d", year, month, dayOfMonth)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val existingDiary = DiaryDatabase.getDatabase(requireContext()).diaryDao().getDiary(date).firstOrNull()
+
+            if (existingDiary != null) {
+                DiaryDatabase.getDatabase(requireContext()).diaryDao().delete(existingDiary)
+                launch(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "다이어리가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.popBackStack()
+                }
+            } else {
+                launch(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "삭제할 다이어리가 없습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
