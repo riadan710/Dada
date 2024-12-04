@@ -28,6 +28,9 @@ class DiaryMemoFragment : Fragment() {
         val month = arguments?.getInt("month")?.let { it + 1 } ?: 0
         val dayOfMonth = arguments?.getInt("dayOfMonth") ?: 0
 
+        // 해당 날짜에 다이어리가 존재한다면 불러오기
+        openDiary(year, month, dayOfMonth)
+
         binding.memoDateTv.text = String.format("%04d년 %02d월 %02d일", year, month, dayOfMonth)
 
 
@@ -55,6 +58,36 @@ class DiaryMemoFragment : Fragment() {
     private fun initViewPager() {
         val viewPagerAdapter = DiaryMemoViewPagerAdapter(requireActivity())
         binding.memoVp.adapter = viewPagerAdapter
+    }
+
+    private fun openDiary(year : Int, month : Int, dayOfMonth : Int) {
+        val date = String.format("%04d-%02d-%02d", year, month, dayOfMonth)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val existingDiary = DiaryDatabase.getDatabase(requireContext()).diaryDao().getDiary(date).firstOrNull()
+
+            if (existingDiary != null) {
+                launch(Dispatchers.Main) {
+                    AppData.diaryContent = existingDiary.content
+                    AppData.diaryWeight = existingDiary.weight
+                    AppData.diarySelectedItem = existingDiary.stampId
+                    if (existingDiary.isStar) {
+                        binding.memoStarIv.visibility = View.VISIBLE
+                        binding.memoNotStarIv.visibility = View.GONE
+                    } else {
+                        binding.memoStarIv.visibility = View.GONE
+                        binding.memoNotStarIv.visibility = View.VISIBLE
+                    }
+                    // bodyImg 처리 (필요 시 추가 구현)
+                }
+            } else {
+                launch(Dispatchers.Main) {
+                    AppData.diarySelectedItem = 0
+                    AppData.diaryContent = ""
+                    AppData.diaryWeight = ""
+                }
+            }
+        }
     }
 
     private fun saveDiary(year : Int, month : Int, dayOfMonth : Int) {

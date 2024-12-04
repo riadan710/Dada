@@ -22,6 +22,7 @@ class DiaryFragment : Fragment() {
         binding.diaryCv.setOnDateChangeListener {_, year, month, dayOfMonth ->
             val selectedDate = Triple(year, month, dayOfMonth)
 
+            // 두번 눌러야 들어가지게
             if (preSelectedDate == selectedDate) {
                 val bundle = Bundle().apply {
                     putInt("year", year)
