@@ -18,12 +18,6 @@ class SettingFragment : Fragment() {
     ): View? {
         binding = FragmentSettingBinding.inflate(inflater, container, false)
 
-        binding.settingLogoutLl.setOnClickListener {
-            val intent = Intent(requireContext(), StartActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
-
         binding.setting1Cl.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.main_frm, SettingProfileFragment())
