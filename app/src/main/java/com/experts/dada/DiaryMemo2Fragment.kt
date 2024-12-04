@@ -55,6 +55,7 @@ class DiaryMemo2Fragment : Fragment() {
             // 만약 현재 이미지가 선택된 스탬프라면 배경을 회색으로 설정
             if (index + 1 == AppData.diarySelectedItem) {
                 imageView.setBackgroundColor(android.graphics.Color.LTGRAY)
+                selectedItemId = index + 1
             }
 
             linearLayout.addView(imageView)
