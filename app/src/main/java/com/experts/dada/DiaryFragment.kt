@@ -12,6 +12,7 @@ import com.experts.dada.databinding.FragmentDiaryBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class DiaryFragment : Fragment() {
 
@@ -28,6 +29,12 @@ class DiaryFragment : Fragment() {
 
         diaryDatabase = DiaryDatabase.getDatabase(requireContext()) // Database 인스턴스 초기화
         diaryDao = diaryDatabase.diaryDao() // DAO 초기화
+
+        // 현재 날짜 가져오기 (오늘 날짜)
+        val today = Calendar.getInstance()
+        // 오늘 날짜를 MaterialCalendarView에 선택된 날짜로 설정
+        val todayCalendarDay = CalendarDay.from(today.get(Calendar.YEAR), today.get(Calendar.MONTH) + 1, today.get(Calendar.DAY_OF_MONTH))
+        binding.diaryCv.setSelectedDate(todayCalendarDay)
 
         // 초기 화면을 로드할 때, 현재 월에 해당하는 다이어리 정보를 로드
         val currentMonth = "${binding.diaryCv.currentDate.year}-${binding.diaryCv.currentDate.month}"

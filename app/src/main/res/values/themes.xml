@@ -33,4 +33,9 @@
         <item name="fontFamily">@font/font_kopupworld_bold</item>
     </style>
 
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/font_kopupworld_bold</item>
+    </style>
+
 </resources>
