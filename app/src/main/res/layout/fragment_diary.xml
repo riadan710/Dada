@@ -30,19 +30,25 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="10dp"/>
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/diary_cv"
+        android:background="@drawable/skyblue_box"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/diary_main_iv"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/skyblue_box"
         android:theme="@style/CalenderViewCustom"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:mcv_selectionColor="@color/white"
+        app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+        app:mcv_firstDayOfWeek="monday"
+        app:mcv_selectionMode="single"
+        app:mcv_showOtherDates="out_of_range"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

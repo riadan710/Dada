@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation(libs.glide)  // 이미지 글라이드 라이브러리
     implementation(libs.androidx.recyclerview)  // 리사이클러뷰 라이브러리
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.1")    // 캘린더 뷰 라이브러리
 
     // Room DB
     implementation("androidx.room:room-ktx:2.6.1")

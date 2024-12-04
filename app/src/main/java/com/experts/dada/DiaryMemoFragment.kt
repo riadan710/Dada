@@ -25,7 +25,7 @@ class DiaryMemoFragment : Fragment() {
         initViewPager()
 
         val year = arguments?.getInt("year") ?: 0
-        val month = arguments?.getInt("month")?.let { it + 1 } ?: 0
+        val month = arguments?.getInt("month") ?: 0
         val dayOfMonth = arguments?.getInt("dayOfMonth") ?: 0
 
         // 해당 날짜에 다이어리가 존재한다면 불러오기
