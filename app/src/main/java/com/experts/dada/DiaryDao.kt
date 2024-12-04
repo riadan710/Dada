@@ -16,7 +16,7 @@ interface DiaryDao {
     suspend fun insert(diary: Diary)
 
     // 다이어리 수정
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun update(diary: Diary)
 
     // 다이어리 삭제

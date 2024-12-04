@@ -126,8 +126,19 @@ class DiaryMemoFragment : Fragment() {
             val existingDiary = DiaryDatabase.getDatabase(requireContext()).diaryDao().getDiary(date).firstOrNull()
 
             if (existingDiary != null) {
+                // existingDiary의 id를 사용하여 업데이트
+                val updatedDiary = existingDiary.copy(
+                    content = content,
+                    stampId = stampId,
+                    weight = weight,
+                    isStar = isStar,
+                    bodyImg = bodyImg
+                )
+
+                DiaryDatabase.getDatabase(requireContext()).diaryDao().update(updatedDiary)
                 launch(Dispatchers.Main) {
-                    Toast.makeText(requireContext(), "이미 해당 날짜에 다이어리가 존재합니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "다이어리가 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.popBackStack()
                 }
             } else {
                 DiaryDatabase.getDatabase(requireContext()).diaryDao().insert(diary)
