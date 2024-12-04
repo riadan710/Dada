@@ -5,8 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.GestureDetector
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -17,6 +19,9 @@ class DiaryMemo1Fragment : Fragment() {
 
     // 이미지 파일 경로
     var uri : Uri? = null
+
+    // GestureDetector 설정
+    private lateinit var gestureDetector: GestureDetector
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,26 @@ class DiaryMemo1Fragment : Fragment() {
         // 이미지 수정도 가능
         binding.memo1EyebodyIv.setOnClickListener {
             getFromAlbum()
+        }
+
+        // GestureDetector 초기화
+        gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent): Boolean {
+                // 이미지 두 번 클릭 시 삭제
+                deleteImage()
+                return true
+            }
+
+            override fun onLongPress(e: MotionEvent) {
+                // 이미지 꾹 누르면 삭제
+                deleteImage()
+            }
+        })
+
+        // 이미지 뷰에 터치 이벤트 설정
+        binding.memo1EyebodyIv.setOnTouchListener { v, event ->
+            gestureDetector.onTouchEvent(event) // 제스처 이벤트 처리
+            false
         }
 
         return binding.root
@@ -75,5 +100,14 @@ class DiaryMemo1Fragment : Fragment() {
                 }
             }
         }
+    }
+
+    // 이미지 삭제
+    private fun deleteImage() {
+        // 이미지와 텍스트 숨기기
+        uri = null
+        binding.memo1EyebodyIv.visibility = View.GONE
+        binding.memo1Tv.visibility = View.VISIBLE
+        binding.memo1Iv.visibility = View.VISIBLE
     }
 }
