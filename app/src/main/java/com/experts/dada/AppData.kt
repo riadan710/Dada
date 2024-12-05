@@ -17,4 +17,12 @@ class AppData : Application() {
         // 초기값
         val defaultPoints = 3000
     }
+
+    override fun onCreate() {
+        super.onCreate()
+
+        // StampSeeder 호출하여 초기 스탬프 삽입
+        val stampSeeder = StampSeeder(this)
+        stampSeeder.seedStamps()
+    }
 }

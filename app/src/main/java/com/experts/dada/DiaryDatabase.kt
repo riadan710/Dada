@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // 스키마를 변경할 때 마다 version을 올려야함 주의!
-@Database(entities = [Diary::class], version = 3, exportSchema = false)
+@Database(entities = [Diary::class, Stamp::class], version = 1, exportSchema = false)
 abstract class DiaryDatabase : RoomDatabase() {
 
     abstract fun diaryDao(): DiaryDao
+    abstract fun stampDao(): StampDao
 
     companion object {
         @Volatile
