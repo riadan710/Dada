@@ -56,11 +56,12 @@ class StoreFragment : Fragment() {
 
             if (points >= totalCost) {
                 points -= totalCost
-                handlePurchase(selectedItems)
-                binding.storeMypointTv.text = points.toString()
-                adapter.clearSelection() // 선택 해제
-                savePoints(sharedPreferences)
-                Toast.makeText(requireContext(), "${totalCount}개 구매 완료! 남은 포인트: $points", Toast.LENGTH_SHORT).show()
+                handlePurchase(selectedItems) {
+                    binding.storeMypointTv.text = points.toString()
+                    adapter.clearSelection() // 선택 해제
+                    savePoints(sharedPreferences)
+                    Toast.makeText(requireContext(), "${totalCount}개 구매 완료! 남은 포인트: $points", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(requireContext(), "포인트가 부족합니다.", Toast.LENGTH_SHORT).show()
             }
@@ -76,15 +77,15 @@ class StoreFragment : Fragment() {
         }
     }
 
-    private fun handlePurchase(selectedItems: List<Stamp>) {
+    private fun handlePurchase(selectedItems: List<Stamp>, onComplete: () -> Unit) {
         // 선택된 아이템들의 구매 상태 업데이트
         lifecycleScope.launch {
-            // 선택된 아이템들의 isPurchase를 true로 업데이트
-            for (stamp in selectedItems) {
+            selectedItems.forEach { stamp ->
                 stampDao.purchaseStamp(stamp.id)  // DB에서 구매 처리
             }
             // 구매 후 StoreAdapter에서 DB를 갱신하여 UI 반영
             loadAvailableStamps()  // DB에서 구매되지 않은 스탬프들을 새로 불러옴
+            onComplete()
         }
     }
 

@@ -10,10 +10,10 @@ interface StampDao {
     @Insert
     suspend fun insertStamp(stamp: Stamp)
 
-    @Query("SELECT * FROM stamps WHERE isPurchase = 0")
+    @Query("SELECT * FROM stamps WHERE isPurchase = 0 ORDER BY id ASC")
     suspend fun getAllAvailableStamps(): List<Stamp>  // 구매하지 않은 스탬프들만 조회
 
-    @Query("SELECT * FROM stamps WHERE isPurchase = 1")
+    @Query("SELECT * FROM stamps WHERE isPurchase = 1 ORDER BY id ASC")
     suspend fun getAllPurchasedStamps(): List<Stamp>  // 구매한 스탬프들만 조회
 
     @Query("SELECT * FROM stamps WHERE id = :stampId")
