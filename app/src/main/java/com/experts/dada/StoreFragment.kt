@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.experts.dada.AppData.Companion.defaultPoints
 import com.experts.dada.databinding.FragmentStoreBinding
 
 class StoreFragment : Fragment() {
@@ -15,8 +16,7 @@ class StoreFragment : Fragment() {
     private lateinit var adapter: StoreAdapter
 
     private val sharedPrefFile = "pointsPreference"
-    private val defaultPoints = 9000
-    private var points: Int = defaultPoints
+    private var points: Int = defaultPoints // 초기값
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

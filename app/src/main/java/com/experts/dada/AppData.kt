@@ -12,5 +12,9 @@ class AppData : Application() {
         var diaryWeight = ""
 
         var diaryImage = ""
+
+
+        // 초기값
+        val defaultPoints = 3000
     }
 }
