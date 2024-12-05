@@ -11,8 +11,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.experts.dada.databinding.FragmentDiaryMemo1Binding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DiaryMemo1Fragment : Fragment() {
     lateinit var binding: FragmentDiaryMemo1Binding
@@ -28,6 +32,28 @@ class DiaryMemo1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDiaryMemo1Binding.inflate(inflater, container,false)
+
+        // 메인 스레드에서 sleep을 사용하지 않도록 주의
+        lifecycleScope.launch(Dispatchers.Main) {
+            // 지연을 비동기적으로 처리
+            withContext(Dispatchers.IO) {
+                Thread.sleep(500)  // 2초 지연
+            }
+
+            // 이미지 로딩 작업
+            if (AppData.diaryImage.isEmpty()) {
+                binding.memo1Tv.visibility = View.VISIBLE
+                binding.memo1Iv.visibility = View.VISIBLE
+                binding.memo1EyebodyIv.visibility = View.GONE
+            } else {
+                binding.memo1Tv.visibility = View.GONE
+                binding.memo1Iv.visibility = View.GONE
+                binding.memo1EyebodyIv.visibility = View.VISIBLE
+                Glide.with(requireContext())
+                    .load(AppData.diaryImage)
+                    .into(binding.memo1EyebodyIv)
+            }
+        }
 
         binding.memo1Tv.visibility = View.VISIBLE
         binding.memo1Iv.visibility = View.VISIBLE
@@ -95,6 +121,9 @@ class DiaryMemo1Fragment : Fragment() {
                             binding.memo1Tv.visibility = View.GONE
                             binding.memo1Iv.visibility = View.GONE
                             binding.memo1EyebodyIv.visibility = View.VISIBLE
+
+                            // URI를 문자열로 변환하여 저장
+                            AppData.diaryImage = it.toString()
                         }
                     }
                 }
@@ -109,5 +138,8 @@ class DiaryMemo1Fragment : Fragment() {
         binding.memo1EyebodyIv.visibility = View.GONE
         binding.memo1Tv.visibility = View.VISIBLE
         binding.memo1Iv.visibility = View.VISIBLE
+
+        // URI 삭제 처리
+        AppData.diaryImage = ""
     }
 }

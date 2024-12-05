@@ -10,5 +10,7 @@ class AppData : Application() {
         var diaryContent = ""
 
         var diaryWeight = ""
+
+        var diaryImage = ""
     }
 }

@@ -35,7 +35,6 @@ class DiaryMemoFragment : Fragment() {
 
         binding.memoDateTv.text = String.format("%04d년 %02d월 %02d일", year, month, dayOfMonth)
 
-
         binding.memoCloseIv.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -79,6 +78,7 @@ class DiaryMemoFragment : Fragment() {
                     AppData.diaryContent = existingDiary.content
                     AppData.diaryWeight = existingDiary.weight
                     AppData.diarySelectedItem = existingDiary.stampId
+                    AppData.diaryImage = existingDiary.bodyImg
                     if (existingDiary.isStar) {
                         binding.memoStarIv.visibility = View.VISIBLE
                         binding.memoNotStarIv.visibility = View.GONE
@@ -94,6 +94,7 @@ class DiaryMemoFragment : Fragment() {
                     AppData.diarySelectedItem = 0
                     AppData.diaryContent = ""
                     AppData.diaryWeight = ""
+                    AppData.diaryImage = ""
                     binding.memoDeleteTv.visibility = View.GONE
                 }
             }
@@ -106,7 +107,7 @@ class DiaryMemoFragment : Fragment() {
         val stampId = AppData.diarySelectedItem
         val weight = view?.findViewById<EditText>(R.id.memo2_weight2_et)?.text.toString()
         val isStar = (binding.memoStarIv.visibility == View.VISIBLE)
-        val bodyImg = R.drawable.eyebody_example // 임시값
+        val bodyImg = AppData.diaryImage
 
         // 입력 값이 비어있는지 체크
         if (weight.isEmpty()) {

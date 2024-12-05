@@ -12,5 +12,5 @@ data class Diary(
     val stampId: Int,
     val weight: String = "",
     val isStar: Boolean = false,
-    val bodyImg: Int
+    val bodyImg: String = ""
 )
