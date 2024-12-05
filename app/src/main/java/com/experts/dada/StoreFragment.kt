@@ -8,12 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.experts.dada.AppData.Companion.defaultPoints
 import com.experts.dada.databinding.FragmentStoreBinding
+import kotlinx.coroutines.launch
 
 class StoreFragment : Fragment() {
     lateinit var binding: FragmentStoreBinding
     private lateinit var adapter: StoreAdapter
+    private lateinit var stampDao: StampDao
 
     private val sharedPrefFile = "pointsPreference"
     private var points: Int = defaultPoints // 초기값
@@ -24,14 +27,21 @@ class StoreFragment : Fragment() {
     ): View? {
         binding = FragmentStoreBinding.inflate(inflater, container, false)
 
+        // adapter 설정
         adapter = StoreAdapter(requireContext())
         binding.storeContentGv.adapter = adapter
+
+        // StampDao 초기화
+        val diaryDatabase = DiaryDatabase.getDatabase(requireContext())
+        stampDao = diaryDatabase.stampDao()
 
         // SharedPreferences에서 포인트 불러오기
         val sharedPreferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         points = sharedPreferences.getInt("points", defaultPoints)
-
         binding.storeMypointTv.text = points.toString()
+
+        // 스탬프 목록 불러오기
+        loadAvailableStamps()
 
         // 구매하기 버튼 클릭 이벤트 처리
         binding.storeBuyLl.setOnClickListener {
@@ -50,8 +60,7 @@ class StoreFragment : Fragment() {
                 binding.storeMypointTv.text = points.toString()
                 adapter.clearSelection() // 선택 해제
                 savePoints(sharedPreferences)
-                Toast.makeText(requireContext(), "${totalCount}개 구매 완료! 남은 포인트: $points", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "${totalCount}개 구매 완료! 남은 포인트: $points", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "포인트가 부족합니다.", Toast.LENGTH_SHORT).show()
             }
@@ -60,10 +69,23 @@ class StoreFragment : Fragment() {
         return binding.root
     }
 
-    private fun handlePurchase(selectedItems: List<Int>) {
-        // 선택된 아이템들의 ID를 처리하는 로직을 여기에 추가합니다.
-        // 예를 들어, 선택된 아이템들을 로그에 출력합니다.
-        println("Selected items: $selectedItems")
+    private fun loadAvailableStamps() {
+        lifecycleScope.launch {
+            val availableStamps = stampDao.getAllAvailableStamps()  // DB에서 구매되지 않은 스탬프들을 가져옴
+            adapter.setStamps(availableStamps)  // StoreAdapter에 스탬프 목록 설정
+        }
+    }
+
+    private fun handlePurchase(selectedItems: List<Stamp>) {
+        // 선택된 아이템들의 구매 상태 업데이트
+        lifecycleScope.launch {
+            // 선택된 아이템들의 isPurchase를 true로 업데이트
+            for (stamp in selectedItems) {
+                stampDao.purchaseStamp(stamp.id)  // DB에서 구매 처리
+            }
+            // 구매 후 StoreAdapter에서 DB를 갱신하여 UI 반영
+            loadAvailableStamps()  // DB에서 구매되지 않은 스탬프들을 새로 불러옴
+        }
     }
 
     private fun savePoints(sharedPreferences: SharedPreferences) {
