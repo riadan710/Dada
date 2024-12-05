@@ -68,28 +68,20 @@
         android:paddingStart="15dp"
         android:paddingTop="15dp"/>
 
-    <LinearLayout
-        android:id="@+id/question_post_ll"
+    <TextView
+        android:id="@+id/question_send_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="문의하기"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/kopubworld_dotum_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question_content_et"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="문의하기"
-            android:textSize="20sp"
-            android:fontFamily="@font/kopubworld_dotum_bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:padding="5dp"
-            android:layout_gravity="center"/>
-
-    </LinearLayout>
-
+        android:background="@drawable/skyblue_box"
+        android:padding="10dp"
+        android:layout_gravity="center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
