@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -83,7 +84,7 @@ class SettingProfileFragment : Fragment() {
     private fun loadProfileData() {
         val nickname = sharedPreferences.getString("nickname", "")
         val gender = sharedPreferences.getString("gender", "Male")
-        val birthDate = sharedPreferences.getString("birthDate", "")
+        val birthDate = sharedPreferences.getString("birthday", "")
 
         binding.profileNicknameEt.setText(nickname)
         if(birthDate?.isEmpty() != true)   binding.profileBirthValueTv.text = birthDate
