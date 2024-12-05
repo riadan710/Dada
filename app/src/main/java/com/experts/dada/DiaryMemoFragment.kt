@@ -1,5 +1,6 @@
 package com.experts.dada
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
+import com.experts.dada.AppData.Companion.defaultPoints
 import com.experts.dada.databinding.FragmentDiaryMemoBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
@@ -154,6 +156,13 @@ class DiaryMemoFragment : Fragment() {
                 DiaryDatabase.getDatabase(requireContext()).diaryDao().insert(diary)
                 launch(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "다이어리가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+
+                    // 다이어리 작성 시, 포인트 50 증가
+                    val sharedPreferences = requireActivity().getSharedPreferences("pointsPreference", Context.MODE_PRIVATE)
+                    var points = sharedPreferences.getInt("points", defaultPoints)
+                    points += 50
+                    sharedPreferences.edit().putInt("points", points).apply()
+
                     parentFragmentManager.popBackStack()
                 }
             }
@@ -195,6 +204,13 @@ class DiaryMemoFragment : Fragment() {
                 DiaryDatabase.getDatabase(requireContext()).diaryDao().delete(existingDiary)
                 launch(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "다이어리가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+
+                    // 다이어리 작성 시, 포인트 50 증가
+                    val sharedPreferences = requireActivity().getSharedPreferences("pointsPreference", Context.MODE_PRIVATE)
+                    var points = sharedPreferences.getInt("points", defaultPoints)
+                    points -= 50
+                    sharedPreferences.edit().putInt("points", points).apply()
+
                     parentFragmentManager.popBackStack()
                 }
             } else {
