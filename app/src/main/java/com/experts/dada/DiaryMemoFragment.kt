@@ -87,7 +87,6 @@ class DiaryMemoFragment : Fragment() {
                         binding.memoNotStarIv.visibility = View.VISIBLE
                     }
                     binding.memoDeleteTv.visibility = View.VISIBLE
-                    // bodyImg 처리 (필요 시 추가 구현)
                 }
             } else {
                 launch(Dispatchers.Main) {
@@ -103,9 +102,9 @@ class DiaryMemoFragment : Fragment() {
 
     private fun saveDiary(year : Int, month : Int, dayOfMonth : Int) {
         val date = String.format("%04d-%02d-%02d", year, month, dayOfMonth)
-        val content = view?.findViewById<EditText>(R.id.memo2_content_et)?.text.toString()
+        val content = view?.findViewById<EditText>(R.id.memo2_content_et)?.text.toString().takeIf { it != "null" } ?: AppData.diaryContent
         val stampId = AppData.diarySelectedItem
-        val weight = view?.findViewById<EditText>(R.id.memo2_weight2_et)?.text.toString()
+        val weight = view?.findViewById<EditText>(R.id.memo2_weight2_et)?.text.toString().takeIf { it != "null" } ?: AppData.diaryWeight
         val isStar = (binding.memoStarIv.visibility == View.VISIBLE)
         val bodyImg = AppData.diaryImage
 

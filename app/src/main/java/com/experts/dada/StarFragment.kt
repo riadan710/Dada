@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class StarFragment : Fragment() {
+class StarFragment : Fragment(), DiaryAdapter.OnItemClickListener {
 
     private lateinit var diaryDao: DiaryDao
     private lateinit var recyclerView: RecyclerView
@@ -43,8 +43,28 @@ class StarFragment : Fragment() {
             val starDiaries = withContext(Dispatchers.IO) {
                 diaryDao.getStarDiary()
             }
-            adapter = DiaryAdapter(starDiaries)
+            adapter = DiaryAdapter(starDiaries, this@StarFragment)
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun onItemClick(diary: Diary) {
+        val dateParts = diary.date.split("-")
+        val year = dateParts[0].toInt()
+        val month = dateParts[1].toInt()
+        val dayOfMonth = dateParts[2].toInt()
+
+        // 프래그먼트 전환 처리
+        val diaryMemoFragment = DiaryMemoFragment().apply {
+            arguments = Bundle().apply {
+                putInt("year", year)
+                putInt("month", month)
+                putInt("dayOfMonth", dayOfMonth)
+            }
+        }
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, diaryMemoFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
