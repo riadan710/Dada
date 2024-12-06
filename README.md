@@ -24,3 +24,5 @@
 - 내 정보에서는 닉네임, 성별, 생년월일을 설정할 수 있음
 - 내 스탬프에서는 구매한 스탬프를 모아볼 수 있음
 - 문의하기에서는 문의를 남길 수 있음
+
+https://youtube.com/shorts/OAEpRDh0tns?si=KRzHJM8ucXk7EXZR
